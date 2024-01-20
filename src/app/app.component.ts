@@ -39,7 +39,6 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-
     const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     const ctx = canvas.getContext("2d");
     if (ctx == null) {
@@ -48,10 +47,13 @@ export class AppComponent {
     if (canvas == null) {
       return;
     }
-
     const canvasOffsetX = canvas.offsetLeft;
     const canvasOffsetY = canvas.offsetTop;
-    
+
+    canvas.width = window.innerWidth - canvasOffsetX;
+
+    canvas.height = 500 - canvasOffsetY;
+
     // Set the background color
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -92,10 +94,12 @@ export class AppComponent {
       ctx.strokeStyle = formData['colorcode']
       ctx.lineCap = 'round';
 
+      const rect = canvas.getBoundingClientRect();
       const point = {
-        x: event.clientX - canvasOffsetX+12,
-        y: event.clientY  - canvasOffsetY+12,
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top,
       };
+
 
       ctx.lineTo(point.x, point.y);
       ctx.stroke();
@@ -109,7 +113,7 @@ export class AppComponent {
     const link = document.createElement('a');
     link.download = 'download.png';
     link.href = canvas.toDataURL();
-    //link.click();
+    link.click();
 
     const toastInfo: ToastInfo = {
       title: 'Image saved!',
@@ -118,8 +122,8 @@ export class AppComponent {
     this.toastService.add(toastInfo);
   }
 
-  clean(){
-    
+  clean() {
+
     const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     const ctx = canvas.getContext("2d");
     if (ctx == null) {
@@ -128,9 +132,9 @@ export class AppComponent {
     if (canvas == null) {
       return;
     }
-    
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
