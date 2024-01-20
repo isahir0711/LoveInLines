@@ -1,0 +1,38 @@
+
+.toast{
+    display: flex;
+    align-items: center;
+    background-color: #cccccca2;
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    width: 250px;
+    position: fixed;
+    right: 12px;
+    text-align: center;
+    top: 8px;
+    border-radius: 4px;
+    animation: fadeintoast 0.4s;
+}
+
+.hidden{
+    animation: fadeouttoast 0.4s;
+}
+
+
+@keyframes fadeouttoast {
+    to{
+        transform: translateX(-15%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeintoast {
+    from{
+        opacity: 0;
+        transform: translateX(-15%);
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,9 @@
+<button class="btn" [style.background-color]="backgroundColor">
+    @if (buttonText != 'empty') {
+        {{buttonText}}
+    }
+    @if (buttonIcon != 'empty') {
+        <img class="icon" src="assets/icons/{{buttonIcon}}">
+    }
+    
+</button>
