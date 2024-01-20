@@ -104,6 +104,52 @@ export class AppComponent {
       ctx.lineTo(point.x, point.y);
       ctx.stroke();
     });
+
+    canvas.addEventListener('touchstart', (e) => {
+      this.isPainting = true;
+      const touch = e.touches[0];
+      this.startX = touch.clientX;
+      this.startY = touch.clientY;
+    });
+    
+    canvas.addEventListener('touchend', () => {
+      this.isPainting = false;
+      ctx.stroke();
+      ctx.beginPath();
+    });
+    
+    canvas.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+      const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d");
+      if (ctx == null) {
+        return;
+      }
+      if (canvas == null) {
+        return;
+      }
+      if (!this.isPainting) {
+        return;
+      }
+    
+      if (ctx == null) return;
+    
+      const formData = this.canvatools.value;
+    
+      ctx.lineWidth = formData['width'];
+      ctx.strokeStyle = formData['colorcode']
+      ctx.lineCap = 'round';
+    
+      const rect = canvas.getBoundingClientRect();
+      const touch = event.touches[0];
+      const point = {
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top,
+      };
+    
+      ctx.lineTo(point.x, point.y);
+      ctx.stroke();
+    });
   }
 
   saveImg(): void {
