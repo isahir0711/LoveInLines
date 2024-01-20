@@ -1,24 +1,28 @@
 <section class="drawing-space">
 
-  <h1>Love in Lines</h1>
+  <h1 class="title">Love in Lines</h1>
 
-  <canvas id="drawing-canva"></canvas>
+  <canvas id="drawing-canva" width="700" height="420"></canvas>
 
-  <article class="tools">
+  <form action="" [formGroup]="canvatools" class="tools"> 
     <div class="picker">
-    <input id="color" value="#ffffff" class="colorpicker" type="color">
+      <input formControlName="colorcode" id="color"  class="colorpicker" type="color">
       <span>Color Picker</span>
     </div>
+    <div class="range">
+      <span>Line Width</span>
+      <input formControlName="width" id="width" type="range" min="2" value="2" step="2" max="20">
+    </div>
     <div class="actions">
-      <app-button buttonIcon="trash-icon.svg" buttonText="Clear"></app-button>
+      <app-button (click)="clean()" buttonIcon="trash-icon.svg" buttonText="Clear"></app-button>
       <app-button buttonIcon="erase-icon.svg" buttonText="Eraser"></app-button>
     </div>
-  </article>
+  </form>
 
 
   <h2>Share your masterpiece!</h2>
   <section class="share">
-    <app-button (click)="saveImg()" buttonIcon="save-icon.svg" buttonText="Save" ></app-button>
+    <app-button (click)="saveImg()" buttonIcon="save-icon.svg" buttonText="Save"></app-button>
     <app-button buttonIcon="twitter-icon.svg" buttonText="Share on Twitter"></app-button>
     <app-button buttonIcon="facebook-icon.svg" buttonText="Share on Facebook"></app-button>
     <app-button buttonIcon="whatsapp-icon.svg" buttonText="Share on Whatsapp"></app-button>

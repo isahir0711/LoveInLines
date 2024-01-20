@@ -13,13 +13,26 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     gap: 12px;
+}
+
+.range{
+    display: flex;
+    flex-direction: column;
 }
 
 .actions{
     display: flex;
     gap: 12px;
+}
+
+.title{
+    font-size: 2em;
+    background: #42F9FF;
+    background: linear-gradient(to right, #42F9FF 0%, #6F30CF 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .picker{
@@ -31,8 +44,6 @@
 
 #drawing-canva{
     border-radius: 8px;
-    background-color: #ffffff;
-    height: 400px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin-bottom: 40px;
 }

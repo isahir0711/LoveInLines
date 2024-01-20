@@ -15,7 +15,7 @@ html {
 
     position: relative;
     height: 100vh;
-    width: 100vw;
+    max-width: 100vw;
     position: relative;
 
 }
