@@ -13,7 +13,7 @@
     </div>
     <div class="range">
       <span>Line Width</span>
-      <input formControlName="width" id="width" type="range" min="2" value="2" step="2" max="20">
+      <input formControlName="width" id="width" type="range" min="5" value="5" step="1" max="25">
     </div>
     <div class="actions">
       <app-button (click)="clean()" buttonIcon="trash-icon.svg" buttonText="Clear"></app-button>
@@ -25,7 +25,7 @@
   <h2>Share your masterpiece!</h2>
   <section class="share">
     <app-button (click)="saveImg()" buttonIcon="save-icon.svg" buttonText="Save"></app-button>
-    <app-button buttonIcon="twitter-icon.svg" buttonText="Share on Twitter"></app-button>
+    <app-button (click)="shareOnTwitter()" buttonIcon="twitter-icon.svg" buttonText="Share on Twitter"></app-button>
     <app-button buttonIcon="facebook-icon.svg" buttonText="Share on Facebook"></app-button>
     <app-button buttonIcon="whatsapp-icon.svg" buttonText="Share on Whatsapp"></app-button>
   </section>

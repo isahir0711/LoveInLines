@@ -15,6 +15,8 @@ export class ButtonComponent {
 
   @Input() backgroundColor: string = '';
 
+  @Input() hrefURL:string = '';
+
   ngOnInit():void{
   }
   

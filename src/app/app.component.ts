@@ -66,6 +66,8 @@ export class AppComponent {
       this.isPainting = true;
       this.startX = e.clientX
       this.startY = e.clientY;
+      this.createCircle(this.startX,this.startY);
+
     });
     canvas.addEventListener('mouseup', (e) => {
       this.isPainting = false;
@@ -100,7 +102,6 @@ export class AppComponent {
         y: event.clientY - rect.top,
       };
 
-
       ctx.lineTo(point.x, point.y);
       ctx.stroke();
     });
@@ -110,10 +111,12 @@ export class AppComponent {
       const touch = e.touches[0];
       this.startX = touch.clientX;
       this.startY = touch.clientY;
+      this.createCircle(this.startX,this.startY);
+
     });
     
     canvas.addEventListener('touchend', () => {
-      this.isPainting = false;
+      this.isPainting = false;      
       ctx.stroke();
       ctx.beginPath();
     });
@@ -152,6 +155,23 @@ export class AppComponent {
     });
   }
 
+  createCircle(x:number, y:number) {
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
+    if (ctx == null) {
+      return;
+    }
+    const formData = this.canvatools.value;
+    const rect = canvas.getBoundingClientRect();
+    const radius = formData['width'] / 10;
+    ctx.beginPath();
+    ctx.arc(x-rect.left, y-rect.top, radius / 2, 0, 2 * Math.PI);
+    ctx.fillStyle = formData['colorcode'];
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+  }
+
   saveImg(): void {
     const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     if (canvas == null) return;
@@ -166,6 +186,9 @@ export class AppComponent {
       type: ''
     }
     this.toastService.add(toastInfo);
+  }
+
+  shareOnTwitter(){
   }
 
   clean() {

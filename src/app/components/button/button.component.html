@@ -1,9 +1,23 @@
-<button class="btn" [style.background-color]="backgroundColor">
-    @if (buttonText != 'empty') {
-        {{buttonText}}
-    }
-    @if (buttonIcon != 'empty') {
-        <img class="icon" src="assets/icons/{{buttonIcon}}">
-    }
-    
-</button>
+
+@if(hrefURL != ''){
+    <a class="btn" [href]="hrefURL" [style.background-color]="backgroundColor">
+        @if (buttonText != 'empty') {
+            {{buttonText}}
+        }
+        @if (buttonIcon != 'empty') {
+            <img class="icon" src="assets/icons/{{buttonIcon}}">
+        }
+        
+    </a>
+}
+@else{
+    <button class="btn"[style.background-color]="backgroundColor">
+        @if (buttonText != 'empty') {
+            {{buttonText}}
+        }
+        @if (buttonIcon != 'empty') {
+            <img class="icon" src="assets/icons/{{buttonIcon}}">
+        }
+        
+    </button>
+}
