@@ -17,12 +17,12 @@
     </div>
     <div class="actions">
       <app-button (click)="clean()" buttonIcon="trash-icon.svg" buttonText="Clear"></app-button>
-      <app-button buttonIcon="erase-icon.svg" buttonText="Eraser"></app-button>
+      <app-button (click)="setEraser()" [isToggle]="true" buttonIcon="erase-icon.svg" buttonText="Eraser"></app-button>
     </div>
   </form>
 
 
-  <h2>Share your masterpiece!</h2>
+  <h2 style="text-align: center;">Share your masterpiece!</h2>
   <section class="share">
     <app-button (click)="saveImg()" buttonIcon="save-icon.svg" buttonText="Save"></app-button>
     <app-button (click)="shareOnTwitter()" buttonIcon="twitter-icon.svg" buttonText="Share on Twitter"></app-button>

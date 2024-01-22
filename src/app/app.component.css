@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     max-width: 700px;
-    gap: 24px;
+    gap: 32px;
     margin: 0 auto;
     padding: 12px;
 }
@@ -19,6 +19,7 @@
 
 .range{
     display: flex;
+    gap: 4px;
     flex-direction: column;
 }
 
@@ -57,7 +58,7 @@
 
 .share{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     gap: 12px;
     width: 100%;
 }

@@ -17,25 +17,34 @@ import { CanvaTools } from './interfaces/tools';
 })
 export class AppComponent {
   private isPainting = false;
+  private isErasing = false;
   startX = 0;
   startY = 0;
+  colorCode:string = '#000';
+  previousColor:string = this.colorCode;
 
   canvatools!: FormGroup;
   constructor(private formBuilder: FormBuilder, public toastService: ToastService, private renderer: Renderer2) {
-
     this.createContactForm();
   }
 
   createContactForm() {
     this.canvatools = this.formBuilder.group({
-      colorcode: '#00000',
+      colorcode: '#000',
       width: 2
     });
   }
 
   ngOnInit(): void {
+    this.colorCode = '#000';
 
+    const colorpicker = document.getElementById('color') as HTMLInputElement;
 
+    if(colorpicker == null) return;
+
+    colorpicker.addEventListener('change',()=>{
+      this.colorCode = colorpicker.value;
+    });
   }
 
   ngAfterViewInit() {
@@ -93,7 +102,7 @@ export class AppComponent {
       const formData = this.canvatools.value;
 
       ctx.lineWidth = formData['width'];
-      ctx.strokeStyle = formData['colorcode']
+      ctx.strokeStyle = this.colorCode;
       ctx.lineCap = 'round';
 
       const rect = canvas.getBoundingClientRect();
@@ -110,7 +119,7 @@ export class AppComponent {
       this.isPainting = true;
       const touch = e.touches[0];
       this.startX = touch.clientX;
-      this.startY = touch.clientY;
+      this.startY = touch.clientY;      
       this.createCircle(this.startX,this.startY);
 
     });
@@ -138,9 +147,8 @@ export class AppComponent {
       if (ctx == null) return;
     
       const formData = this.canvatools.value;
-    
       ctx.lineWidth = formData['width'];
-      ctx.strokeStyle = formData['colorcode']
+      ctx.strokeStyle = this.colorCode;
       ctx.lineCap = 'round';
     
       const rect = canvas.getBoundingClientRect();
@@ -164,9 +172,9 @@ export class AppComponent {
     const formData = this.canvatools.value;
     const rect = canvas.getBoundingClientRect();
     const radius = formData['width'] / 10;
+    ctx.fillStyle = this.colorCode;
     ctx.beginPath();
     ctx.arc(x-rect.left, y-rect.top, radius / 2, 0, 2 * Math.PI);
-    ctx.fillStyle = formData['colorcode'];
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
@@ -206,6 +214,22 @@ export class AppComponent {
 
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  setEraser(){
+    this.isErasing = true;
+    if(this.colorCode == '#ffffffff'){
+      this.isErasing = false;
+    }
+
+    if(this.isErasing){
+      this.colorCode = '#ffffffff';
+    }
+    else{
+      const colorpicker = document.getElementById('color') as HTMLInputElement;
+      if(colorpicker == null) return;
+      this.colorCode = colorpicker.value;
+    }
   }
 }
 

@@ -1,23 +1,20 @@
-
-@if(hrefURL != ''){
-    <a class="btn" [href]="hrefURL" [style.background-color]="backgroundColor">
+@if (isToggle) {
+    <button (click)="toggleButton()" class="btn" [ngClass]="toggle ? 'toggled' : ''" [style.background-color]="backgroundColor">
         @if (buttonText != 'empty') {
-            {{buttonText}}
+        {{buttonText}}
         }
         @if (buttonIcon != 'empty') {
-            <img class="icon" src="assets/icons/{{buttonIcon}}">
+        <img class="icon" src="assets/icons/{{buttonIcon}}">
         }
-        
-    </a>
+    </button>
 }
-@else{
-    <button class="btn"[style.background-color]="backgroundColor">
+@else {
+    <button (click)="toggleButton()" class="btn" [style.background-color]="backgroundColor">
         @if (buttonText != 'empty') {
-            {{buttonText}}
+        {{buttonText}}
         }
         @if (buttonIcon != 'empty') {
-            <img class="icon" src="assets/icons/{{buttonIcon}}">
+        <img class="icon" src="assets/icons/{{buttonIcon}}">
         }
-        
     </button>
 }

@@ -1,4 +1,4 @@
-.btn{
+.btn {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,30 +13,33 @@
     background-color: #000;
     border: 1px solid transparent;
     font-weight: 700;
-    font-size:12px;
+    font-size: 12px;
     transition: all 0.2s;
 }
 
+.toggled{
+    background-color: #3a3737;
+}
 
-a{
+a {
 
     text-decoration: none;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #3f3f3f;
 }
 
-.btn:active{
+.btn:active {
     transform: translateY(-15%);
 }
 
-.icon{
+.icon {
     height: 26px;
 }
 
 @media only screen and (max-width: 600px) {
-    .btn:hover{
+    .btn:hover {
         background-color: #000;
     }
-  }
+}
