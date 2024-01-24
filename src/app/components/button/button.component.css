@@ -18,7 +18,7 @@
 }
 
 .toggled{
-    background-color: #3a3737;
+    background-color: #3f3f3f;
 }
 
 a {
@@ -26,8 +26,11 @@ a {
     text-decoration: none;
 }
 
-.btn:hover {
-    background-color: #3f3f3f;
+
+@media (hover: hover) {
+    .btn:hover {
+        background-color: #3f3f3f;
+    }
 }
 
 .btn:active {
@@ -36,10 +39,4 @@ a {
 
 .icon {
     height: 26px;
-}
-
-@media only screen and (max-width: 600px) {
-    .btn:hover {
-        background-color: #000;
-    }
 }

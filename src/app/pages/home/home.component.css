@@ -1,0 +1,90 @@
+.drawing-space{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 700px;
+    gap: 32px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+
+.tools{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.range{
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+}
+
+.actions{
+    display: flex;
+    gap: 12px;
+}
+
+.title{
+    font-size: 4.5rem;
+    background: rgb(252,70,107);
+    background: linear-gradient(90deg, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin: 24px;
+}
+
+.picker{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.drawing-board{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 60px;
+    margin-inline: 4px;
+}
+
+#drawing-canva{
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.share{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+}
+
+.colorpicker{
+    height: 36px;
+    width: 36px;
+    border-radius: 100%;
+    border: 0;
+}
+
+.colorpicker::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border: 0;
+}
+
+.colorpicker::-webkit-color-swatch{
+    border: 4px solid rgba(156, 156, 156, 0.692);
+    border-radius: 100%;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .share{
+        flex-direction: column;
+    }
+  }

@@ -25,7 +25,7 @@ export class ButtonComponent {
   }
 
   toggleButton() {
-    if (this.toggle) {      
+    if (this.toggle) {
       this.toggle = false;
     }
     else{
