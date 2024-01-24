@@ -75,7 +75,7 @@ export class HomeComponent {
 
     canvas.width = 650;
     if (window.matchMedia('(max-width: 600px)').matches) {
-    canvas.width = 350;
+      canvas.width = 325;
     }
     canvas.height = 500 - canvasOffsetY;
 
