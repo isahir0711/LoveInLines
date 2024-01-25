@@ -14,7 +14,7 @@ export class ToastService {
   duration:number = 300;
 
   add(toastInfo: ToastInfo) {
-    if(this.toasts.length < 5){
+    if(this.toasts.length < 1){
       this.toasts.push(toastInfo);
     }
   }

@@ -1,12 +1,12 @@
-import { Component, Renderer2 } from '@angular/core';
-import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ToastInfo } from '../../interfaces/toastInfo';
 import { ToastService } from '../../services/toast.service';
 import { ButtonComponent } from "../../components/button/button.component";
 import { ToastComponent } from '../../components/toast/toast.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { inflate, deflate } from 'pako';
+import { Point, Stroke } from '../../interfaces/strokes';
 
 @Component({
   selector: 'app-home',
@@ -21,29 +21,29 @@ export class HomeComponent {
   startX = 0;
   startY = 0;
   colorCode: string = '#000';
+  lineWidth: number = 5;
   previousColor: string = this.colorCode;
 
+  points: Point[] = [];
+  strokes: Point[][] = [];
+
   canvatools!: FormGroup;
-  constructor(private formBuilder: FormBuilder, public toastService: ToastService, private route: ActivatedRoute, private router: Router) {
-    this.createContactForm();
+  constructor(public toastService: ToastService, private route: ActivatedRoute, private router: Router) {
   }
-
-  createContactForm() {
-    this.canvatools = this.formBuilder.group({
-      colorcode: '#000',
-      width: 2
-    });
-  }
-
   ngOnInit(): void {
     this.colorCode = '#000';
 
     const colorpicker = document.getElementById('color') as HTMLInputElement;
-
     if (colorpicker == null) return;
+    const lineWidth = document.getElementById('width') as HTMLInputElement;
+    if (lineWidth == null) return;
 
     colorpicker.addEventListener('change', () => {
       this.colorCode = colorpicker.value;
+    });
+
+    lineWidth.addEventListener('change', () => {
+      this.lineWidth = Number(lineWidth.value);
     });
   }
 
@@ -74,7 +74,7 @@ export class HomeComponent {
     const canvasOffsetY = canvas.offsetTop;
 
     canvas.width = 650;
-    if (window.matchMedia('(max-width: 600px)').matches) {
+    if (window.matchMedia('(max-width: 650px)').matches) {
       canvas.width = 325;
     }
     canvas.height = 500 - canvasOffsetY;
@@ -87,13 +87,15 @@ export class HomeComponent {
       this.isPainting = true;
       this.startX = e.clientX
       this.startY = e.clientY;
+      this.points = [];
       this.createCircle(this.startX, this.startY);
-
     });
     canvas.addEventListener('mouseup', (e) => {
       this.isPainting = false;
       ctx.stroke();
       ctx.beginPath();
+      this.strokes.push(this.points);
+
       //TODO: Fix that when the uri is to big the browser throws a 431
       //this.updateURL();
     });
@@ -105,9 +107,7 @@ export class HomeComponent {
       if (canvas == null) return;
       if (!this.isPainting) return;
 
-      const formData = this.canvatools.value;
-
-      ctx.lineWidth = formData['width'];
+      ctx.lineWidth = this.lineWidth;
       ctx.strokeStyle = this.colorCode;
       ctx.lineCap = 'round';
 
@@ -116,8 +116,8 @@ export class HomeComponent {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top,
       };
-
       ctx.lineTo(point.x, point.y);
+      this.points.push({ lineWidht: this.lineWidth, colorCode: this.colorCode, xPosition: point.x, yPosition: point.y });
       ctx.stroke();
     });
 
@@ -126,6 +126,7 @@ export class HomeComponent {
       const touch = e.touches[0];
       this.startX = touch.clientX;
       this.startY = touch.clientY;
+      this.points = [];
       this.createCircle(this.startX, this.startY);
 
     });
@@ -146,8 +147,7 @@ export class HomeComponent {
       if (canvas == null) return;
       if (!this.isPainting) return;
 
-      const formData = this.canvatools.value;
-      ctx.lineWidth = formData['width'];
+      ctx.lineWidth = this.lineWidth;
       ctx.strokeStyle = this.colorCode;
       ctx.lineCap = 'round';
 
@@ -159,8 +159,36 @@ export class HomeComponent {
       };
 
       ctx.lineTo(point.x, point.y);
+      this.points.push({ lineWidht: this.lineWidth, colorCode: this.colorCode, xPosition: point.x, yPosition: point.y });
       ctx.stroke();
     });
+  }
+
+  undo(){
+    this.strokes.splice(-1,1)
+    this.drawStrokes();
+  }
+
+  drawStrokes() {
+    this.clean();
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
+    if (ctx == null) return;
+    if (canvas == null) return;
+    const rect = canvas.getBoundingClientRect();
+    this.strokes.forEach(path => {
+      ctx.beginPath();
+      ctx.lineCap = 'round';
+      ctx.moveTo(path[0].xPosition, path[0].yPosition);
+      for (let i = 1; i < path.length; i++) {
+        ctx.lineWidth = path[i].lineWidht;
+        ctx.strokeStyle = path[i].colorCode;
+        ctx.lineTo(path[i].xPosition, path[i].yPosition);
+      }
+      ctx.stroke();
+    })
+    ctx.stroke();
+    ctx.beginPath();
   }
 
   createCircle(x: number, y: number) {
@@ -169,15 +197,31 @@ export class HomeComponent {
     if (ctx == null) {
       return;
     }
-    const formData = this.canvatools.value;
-    const rect = canvas.getBoundingClientRect();
-    const radius = formData['width'] / 10;
-    ctx.fillStyle = this.colorCode;
+
+    /*old way of creating circles*/
+    /*
     ctx.beginPath();
     ctx.arc(x - rect.left, y - rect.top, radius / 2, 0, 2 * Math.PI);
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
+    */
+
+    //TODO: try to understand why the undo doesn't work well here
+    ctx.lineWidth = this.lineWidth;
+    ctx.strokeStyle = this.colorCode;
+    ctx.lineCap = 'round';
+    this.points = []
+
+    const rect = canvas.getBoundingClientRect();
+    const point = {
+      x: x - rect.left,
+      y: y - rect.top,
+    };
+
+    ctx.lineTo(point.x, point.y);
+    //this.points.push({ lineWidht: this.lineWidth, colorCode: this.colorCode, xPosition: point.x, yPosition: point.y });
+    ctx.stroke();
   }
 
   saveImg(): void {
@@ -185,7 +229,7 @@ export class HomeComponent {
     if (canvas == null) return;
 
     const link = document.createElement('a');
-    link.download = 'download.png';
+    link.download = 'masthepeace.png';
     link.href = canvas.toDataURL();
     link.click();
 
@@ -222,7 +266,7 @@ export class HomeComponent {
     this.router.navigate(['/Home', '%7C%7C']);
   }
 
-  setEraser() {    
+  setEraser() {
     this.isErasing = true;
     if (this.colorCode == '#ffffffff') {
       this.isErasing = false;

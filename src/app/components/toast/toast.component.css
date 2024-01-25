@@ -3,9 +3,10 @@
     display: flex;
     align-items: center;
     background-color: #cccccca2;
+    border: 1px solid #fff;
     backdrop-filter: blur(10px);
-    padding: 12px;
-    width: 250px;
+    padding: 24px 12px;
+    width: 350px;
     position: fixed;
     left: 12px;
     text-align: center;
@@ -36,3 +37,13 @@
         opacity: 1;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .toast{
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+        width: 90dvw;
+    }
+  }
