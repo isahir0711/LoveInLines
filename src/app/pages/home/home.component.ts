@@ -135,6 +135,7 @@ export class HomeComponent {
       this.isPainting = false;
       ctx.stroke();
       ctx.beginPath();
+      this.strokes.push(this.points);
       //TODO: Fix that when the uri is to big the browser throws a 431
       //this.updateURL();
     });
@@ -165,12 +166,21 @@ export class HomeComponent {
   }
 
   undo(){
+    //clean the canvas
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
+    if (ctx == null) return;
+    if (canvas == null) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     this.strokes.splice(-1,1)
     this.drawStrokes();
   }
 
   drawStrokes() {
-    this.clean();
     const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     const ctx = canvas.getContext("2d");
     if (ctx == null) return;
@@ -220,8 +230,15 @@ export class HomeComponent {
     };
 
     ctx.lineTo(point.x, point.y);
-    //this.points.push({ lineWidht: this.lineWidth, colorCode: this.colorCode, xPosition: point.x, yPosition: point.y });
+    this.points.push({ lineWidht: this.lineWidth, colorCode: this.colorCode, xPosition: point.x, yPosition: point.y });
     ctx.stroke();
+  }
+
+  shareOnFacebook(){
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+    if (canvas == null) return;
+    let canvasData = canvas.toDataURL("image/png");
+    console.log(canvasData);
   }
 
   saveImg(): void {
@@ -241,6 +258,8 @@ export class HomeComponent {
   }
 
   shareOnTwitter() {
+    console.log(this.strokes);
+    
   }
 
   updateURL() {
@@ -262,6 +281,7 @@ export class HomeComponent {
 
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    this.strokes = [];
     //cleaning the url
     this.router.navigate(['/Home', '%7C%7C']);
   }
