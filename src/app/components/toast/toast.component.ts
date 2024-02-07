@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ToastInfo } from '../../interfaces/toastInfo';
-import { ToastService } from '../../services/toast.service';
+import { ToastService } from '../../services/toast/toast.service';
 import { ButtonComponent } from "../button/button.component";
 
 @Component({

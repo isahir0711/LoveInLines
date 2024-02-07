@@ -1,0 +1,11 @@
+a{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: currentColor;
+    text-decoration: none;
+    transition: all 0.4s;
+}
+
+a:hover{
+    color: #6b6b6b;
+}

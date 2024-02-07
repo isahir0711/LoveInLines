@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastInfo } from '../interfaces/toastInfo';
+import { ToastInfo } from '../../interfaces/toastInfo';
 import { count } from 'rxjs';
 
 @Injectable({
