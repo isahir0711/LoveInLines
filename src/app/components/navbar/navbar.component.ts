@@ -11,4 +11,15 @@ import { LinkComponent } from "../link/link.component";
 })
 export class NavbarComponent {
 
+    ngOnInit(): void {
+        document.addEventListener("scroll", function () {
+            const navbar = document.getElementById("navbar") as HTMLElement;
+
+            if (window.scrollY > 70) {
+                navbar.classList.add('solid');
+            } else {
+                navbar.classList.remove('solid');
+            }
+        });
+    }
 }
