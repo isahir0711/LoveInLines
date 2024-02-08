@@ -32,7 +32,7 @@ export class BoardComponent {
     public toastService: ToastService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.colorCode = '#ff0000';
 
@@ -48,6 +48,15 @@ export class BoardComponent {
     lineWidth.addEventListener('change', () => {
       this.lineWidth = Number(lineWidth.value);
     });
+
+    const modal = document.getElementById("myModal");
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        if(modal==null) return;
+        modal.style.display = "none";
+      }
+    }
   }
 
   loadURLImg(imgURI: string) {
@@ -185,9 +194,9 @@ export class BoardComponent {
     });
   }
 
-  /*
-        TODO: Fix the undo function, it only fails when we draw points clicking, if all of the content are lines it does work correctly
-  undo(){
+  //TODO: Fix the undo function, it only fails when we draw points clicking, if all of the content are lines it does work correctly
+
+  undo() {
     //clean the canvas
     const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     const ctx = canvas.getContext("2d");
@@ -198,10 +207,11 @@ export class BoardComponent {
 
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    this.strokes.splice(-1,1)
+    this.strokes.splice(-1, 1)
     this.drawStrokes();
   }
-*/
+
+
   drawStrokes() {
     const canvas = document.getElementById(
       'drawing-canva'
@@ -271,7 +281,13 @@ export class BoardComponent {
     ) as HTMLCanvasElement;
     if (canvas == null) return;
     let canvasData = canvas.toDataURL('image/png');
-    console.log(canvasData);
+
+
+
+    const modal = document.getElementById("myModal");
+    if(modal==null) return;
+    modal.style.display = "block";
+
   }
 
   saveImg(): void {

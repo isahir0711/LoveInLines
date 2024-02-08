@@ -18,11 +18,19 @@
           <app-button (click)="setEraser()" [isToggle]="true" buttonIcon="erase-icon.svg" buttonText="Eraser"></app-button>
           <!--
             TODO: Fix the undo function, it only fails when we draw points clicking, if all of the content are lines it does work correctly 
-            <app-button (click)="undo()" buttonIcon="undo-icon.svg" buttonText="Undo"></app-button>
           -->
+          <app-button (click)="undo()" buttonIcon="undo-icon.svg" buttonText="Undo"></app-button>
         </div>
       </article>
     
+      <div id="myModal" class="modal">
+
+        <div class="modal-content">
+          <p>Enter the room code</p>
+          <input type="text">
+        </div>
+      
+      </div>
     
       <h2 style="text-align: center;">Share your masterpiece!</h2>
       <section class="share">
