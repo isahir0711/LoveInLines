@@ -237,6 +237,17 @@ export class RealtimeboardComponent {
       };
 
       ctx.lineTo(point.x, point.y);
+
+      const Pointinfo: RealTimeDrawingInfo = {
+        LineWidth: this.lineWidth,
+        ColorCode:this.colorCode,
+        XPosition:point.x,
+        YPosition:point.y
+      }
+      ctx.stroke();
+
+      this.rtservice.sendPoint(Pointinfo);
+      
       this.points.push({
         lineWidht: this.lineWidth,
         colorCode: this.colorCode,
