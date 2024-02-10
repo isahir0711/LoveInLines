@@ -126,9 +126,8 @@ export class RealtimeboardComponent {
     
     
     this.rtservice.fetchMessage().pipe(
-      map(res =>{        
+      map(res =>{
         this.drawAPoint(res);
-        console.log(res);
       }),
       catchError(err =>{
         throw err
@@ -156,7 +155,6 @@ export class RealtimeboardComponent {
       this.isPainting = false;
       ctx.stroke();
       ctx.beginPath();
-      this.strokes.push(this.points);
 
       //TODO: Fix that when the uri is to big the browser throws a 431
       //this.updateURL();
@@ -188,8 +186,10 @@ export class RealtimeboardComponent {
       }
       ctx.stroke();
 
-      //TODO: refactor the drawing logic on the canvas
       this.rtservice.sendPoint(Pointinfo);
+      //provisional solution
+      /**setTimeout(()=>{
+      },3000) */
 
       this.points.push({
         lineWidht: this.lineWidth,
