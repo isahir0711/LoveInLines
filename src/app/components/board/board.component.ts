@@ -23,16 +23,16 @@ export class BoardComponent {
   colorCode: string = '#ff0000';
   lineWidth: number = 5;
   previousColor: string = this.colorCode;
-
   points: Point[] = [];
   strokes: Point[][] = [];
 
-  canvatools!: FormGroup;
   constructor(
     public toastService: ToastService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
+
+
   ngOnInit(): void {
     this.colorCode = '#ff0000';
 
@@ -48,15 +48,6 @@ export class BoardComponent {
     lineWidth.addEventListener('change', () => {
       this.lineWidth = Number(lineWidth.value);
     });
-
-    const modal = document.getElementById("myModal");
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        if(modal==null) return;
-        modal.style.display = "none";
-      }
-    }
   }
 
   loadURLImg(imgURI: string) {
@@ -75,14 +66,12 @@ export class BoardComponent {
   }
 
   ngAfterViewInit() {
-    this.route.params.subscribe((params) => {
-      const canvasId = params['cId'];
-      this.loadURLImg(canvasId);
-    });
+    // this.route.params.subscribe((params) => {
+    //   const canvasId = params['cId'];
+    //   this.loadURLImg(canvasId);
+    // });
 
-    const canvas = document.getElementById(
-      'drawing-canva'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     if (ctx == null) return;
     if (canvas == null) return;
@@ -281,12 +270,6 @@ export class BoardComponent {
     ) as HTMLCanvasElement;
     if (canvas == null) return;
     let canvasData = canvas.toDataURL('image/png');
-
-
-
-    const modal = document.getElementById("myModal");
-    if(modal==null) return;
-    modal.style.display = "block";
 
   }
 

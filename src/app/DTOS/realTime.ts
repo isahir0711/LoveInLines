@@ -2,5 +2,6 @@ export interface RealTimeDrawingInfo {
   ColorCode: string,
   LineWidth: number,
   XPosition:number,
-  YPosition:number
+  YPosition:number,
+  Message?:string
 }

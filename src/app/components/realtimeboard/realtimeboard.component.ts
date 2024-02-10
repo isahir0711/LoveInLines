@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Point } from '../../interfaces/strokes';
@@ -7,15 +7,15 @@ import { ToastService } from '../../services/toast/toast.service';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { ToastComponent } from '../toast/toast.component';
-import { RealtimedrawingService } from '../../services/server/realtimedrawing.service';
+import { RealtimedrawingService } from '../../services/websocket/realtimedrawing.service';
 import { RealTimeDrawingInfo } from '../../DTOS/realTime';
 import { Observable, catchError, map, timeout } from 'rxjs';
-import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-realtimeboard',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, ToastComponent, ReactiveFormsModule],
+  imports: [CommonModule, ButtonComponent, ToastComponent, ReactiveFormsModule,],
   templateUrl: './realtimeboard.component.html',
   styleUrl: './realtimeboard.component.css',
 })
@@ -31,16 +31,14 @@ export class RealtimeboardComponent {
   points: Point[] = [];
   strokes: Point[][] = [];
 
-  canvatools!: FormGroup;
-  constructor(
-    public toastService: ToastService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private rtservice: RealtimedrawingService
-  ) {
-    rtservice.connectWebSocket();
+  constructor(public toastService: ToastService, private route: ActivatedRoute, private router: Router, private rtservice: RealtimedrawingService) {
   }
+
   ngOnInit(): void {
+
+    const roomid = this.route.snapshot.paramMap.get('room')?.toString();
+    if(roomid === undefined) {alert(roomid); return;}
+    this.rtservice.connectWebSocket(roomid);
 
     this.colorCode = '#ff0000';
 
@@ -56,6 +54,10 @@ export class RealtimeboardComponent {
     lineWidth.addEventListener('change', () => {
       this.lineWidth = Number(lineWidth.value);
     });
+  }
+
+  ngOnDestroy():void{
+    this.rtservice.endConnection();
   }
   
   // webSocketInit(){
@@ -124,11 +126,9 @@ export class RealtimeboardComponent {
     
     
     this.rtservice.fetchMessage().pipe(
-      map(res =>{
+      map(res =>{        
         this.drawAPoint(res);
-        // setTimeout(()=>{
-        //   this.drawAPoint(res);
-        // },100);
+        console.log(res);
       }),
       catchError(err =>{
         throw err
@@ -188,10 +188,8 @@ export class RealtimeboardComponent {
       }
       ctx.stroke();
 
+      //TODO: refactor the drawing logic on the canvas
       this.rtservice.sendPoint(Pointinfo);
-      // setTimeout(()=>{
-      //   this.rtservice.sendPoint(Pointinfo);
-      // },300);
 
       this.points.push({
         lineWidht: this.lineWidth,
@@ -360,7 +358,7 @@ export class RealtimeboardComponent {
     let canvasData = canvas.toDataURL('image/png');
     canvasData = encodeURI(canvasData);
 
-    this.router.navigate(['/Home', canvasData]);
+    //this.router.navigate(['/Home', canvasData]);
   }
 
   clean() {

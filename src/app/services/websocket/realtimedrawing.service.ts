@@ -9,14 +9,12 @@ import { RealTimeDrawingInfo } from '../../DTOS/realTime';
 })
 export class RealtimedrawingService {
 
-  constructor() { }
-
-  private apiURL = environment.socketServerURL;
+  private socketURL = environment.socketServerURL;
 
   private socket$!: WebSocketSubject<any>;
-
-  connectWebSocket(){
-    this.socket$ = webSocket(this.apiURL);
+  
+  connectWebSocket(roomId:string){
+    this.socket$ = webSocket(this.socketURL + `?roomId=${roomId}`);
     this.socket$.subscribe();
   }
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LinkComponent } from "../link/link.component";
+import { ApiService } from '../../services/api/api.service';
+import { catchError, map } from 'rxjs';
 
 @Component({
     selector: 'app-navbar',
@@ -10,6 +12,9 @@ import { LinkComponent } from "../link/link.component";
     imports: [RouterLink, LinkComponent]
 })
 export class NavbarComponent {
+
+    constructor(private apiService: ApiService,private router:Router) {
+    }
 
     ngOnInit(): void {
         document.addEventListener("scroll", function () {
@@ -21,5 +26,20 @@ export class NavbarComponent {
                 navbar.classList.remove('solid');
             }
         });
+    }
+
+    createRoom(): void {
+        this.apiService.generateCode().pipe(
+            map(res => {
+                this.router.navigate(
+                    [`/Together/${res.code}`],
+                  );
+            }),
+            catchError(err => {
+                console.log(err);
+                
+                throw err
+            })
+        ).subscribe();
     }
 }
