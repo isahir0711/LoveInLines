@@ -7,6 +7,8 @@ import { ToastService } from '../../services/toast/toast.service';
 import { ButtonComponent } from '../button/button.component';
 import { CommonModule } from '@angular/common';
 import { ToastComponent } from '../toast/toast.component';
+import { ApiService } from '../../services/api/api.service';
+import { UploadImage } from '../../interfaces/image';
 
 @Component({
   selector: 'app-board',
@@ -29,7 +31,8 @@ export class BoardComponent {
   constructor(
     public toastService: ToastService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private apiService: ApiService
   ) { }
 
 
@@ -264,19 +267,22 @@ export class BoardComponent {
     ctx.stroke();
   }
 
-  shareOnFacebook() {
-    const canvas = document.getElementById(
-      'drawing-canva'
-    ) as HTMLCanvasElement;
+  uploadImage() {
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     if (canvas == null) return;
     let canvasData = canvas.toDataURL('image/png');
 
+    const image: UploadImage={
+      imageBase64:canvasData,
+      imageName:'demoName',
+      imageType:'png'
+    }
+    this.apiService.uploadImage(image).subscribe();
   }
 
+
   saveImg(): void {
-    const canvas = document.getElementById(
-      'drawing-canva'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     if (canvas == null) return;
 
     const link = document.createElement('a');
@@ -289,6 +295,7 @@ export class BoardComponent {
       type: '',
     };
     this.toastService.add(toastInfo);
+
   }
 
   shareOnTwitter() {
@@ -296,9 +303,7 @@ export class BoardComponent {
   }
 
   updateURL() {
-    const canvas = document.getElementById(
-      'drawing-canva'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     if (canvas == null) return;
     let canvasData = canvas.toDataURL('image/png');
     canvasData = encodeURI(canvasData);
