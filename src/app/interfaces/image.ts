@@ -3,3 +3,8 @@ export interface UploadImage{
     imageName:string,
     imageType:string
 }
+
+export interface DrawingServerResponse{
+    drawingURL:string,
+    totalLikes:number
+}

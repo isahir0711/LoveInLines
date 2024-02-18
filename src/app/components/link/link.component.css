@@ -4,6 +4,7 @@ a{
     color: currentColor;
     text-decoration: none;
     transition: all 0.4s;
+    margin-right: 12px;
 }
 
 a:hover{

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Observable, catchError } from 'rxjs';
-import { UploadImage } from '../../interfaces/image';
+import { DrawingServerResponse, UploadImage } from '../../interfaces/image';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,9 @@ export class ApiService {
         throw err;
       })
     );
+  }
+
+  getImages():Observable<DrawingServerResponse[]>{
+    return this.http.get<DrawingServerResponse[]>(this.apiURL + "/getDrawings");
   }
 }

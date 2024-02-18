@@ -6,15 +6,18 @@
     gap: 16px;
     top: 0;
     width: 100vw;
+    margin: 0 auto;
     background-color: transparent;
     backdrop-filter: blur(25px);
     padding: 12px;
     border-bottom: 1px solid transparent;
+    height: 7vh;
+    z-index: 1;
 }
 
 .solid{
     color: #7267ff;
-    border-bottom: 1px solid rgb(75, 75, 75);
+    border-bottom: 1px solid #2f3336;
 }
 
 .icon-wrapper{
