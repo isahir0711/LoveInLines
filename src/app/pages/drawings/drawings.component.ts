@@ -25,9 +25,7 @@ export class DrawingsComponent {
     getDrawings(){
         this.apiService.getImages().pipe(
             map(res => {
-                this.posts = res;
-                console.log(res);
-                
+                this.posts = res;                
             }),
             catchError(err=>{
                 console.error(err);
