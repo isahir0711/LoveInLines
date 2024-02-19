@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ToastComponent } from '../toast/toast.component';
 import { ApiService } from '../../services/api/api.service';
 import { UploadImage } from '../../interfaces/image';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -277,7 +278,19 @@ export class BoardComponent {
       imageName:'demoName',
       imageType:'png'
     }
-    this.apiService.uploadImage(image).subscribe();
+    this.apiService.uploadImage(image).pipe(
+      catchError(err=>{
+        console.error(err)
+        throw err;
+      })
+    ).subscribe();
+
+    const toastInfo:ToastInfo = {
+      title:'Image uploaded succesfully',
+      type:''
+    }
+    this.toastService.add(toastInfo);
+    this.clean();
   }
 
 

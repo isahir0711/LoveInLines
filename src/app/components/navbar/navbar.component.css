@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     position: fixed;
     display: flex;
     align-items: center;
@@ -10,17 +10,17 @@
     background-color: transparent;
     backdrop-filter: blur(25px);
     padding: 12px;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid #2f3336;
     height: 7vh;
     z-index: 1;
 }
 
-.solid{
+.solid {
     color: #7267ff;
     border-bottom: 1px solid #2f3336;
 }
 
-.icon-wrapper{
+.icon-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,6 +28,12 @@
     font-weight: 800;
 }
 
-.nav-image{
+.nav-image {
     width: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        height: 10vh;
+    }
 }
