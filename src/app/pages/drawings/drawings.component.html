@@ -1,20 +1,23 @@
 <section class="grid">
-  <div class="message">
-    <p>Enjoy the drawings of everyone</p>
-  </div>
-  @for (post of posts; track $index) {
-    <article class="post">
-      <div class="user-info">
-        <img class="user-pfp" src="https://avatars.githubusercontent.com/u/56800881?v=4" loading="lazy" alt="">
-        <h2>Isahir :D</h2>
-      </div>
-      <img class="post-image" [src]="post.drawingURL" alt="">
-    <div class="post-info">
-      <p>Total Likes: {{post.totalLikes}}</p>
-      <app-button buttonText="Like"></app-button>
-    </div>
-  </article>
+  @if(loading){
+    <h2>Loading</h2>
   }
+  @else{
+    @for (post of posts; track $index) {
+      <article class="post">
+        <div class="user-info">
+          <img class="user-pfp" src="https://avatars.githubusercontent.com/u/56800881?v=4" loading="lazy" alt="">
+          <h2>Isahir :D</h2>
+        </div>
+        <img class="post-image" loading="lazy" [src]="post.drawingURL" alt="">
+      <div class="post-info">
+        <p>Total Likes: {{post.totalLikes}}</p>
+        <app-button buttonText="Like"></app-button>
+      </div>
+    </article>
+    }
+  }
+  
 
 
 </section>

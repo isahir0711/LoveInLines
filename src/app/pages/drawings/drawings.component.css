@@ -1,14 +1,22 @@
 .grid{
-  max-width: 600px;
-  display: grid;
+  columns: 5 250px;
+  column-gap: 12px;
   margin: 0 auto;
-  grid-template-columns: 1fr;
   background-color: transparent;
   backdrop-filter: blur(10px);
+  padding-top: 12px;
+  align-items: center;
+}
+
+.post{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 12px;
 }
 
 .post-image{
-  max-width:80%;
+  max-width:100%;
   align-self: center;
   border: 1px solid rgba(210, 210, 210, 0.489);
   border-radius: 12px;
@@ -20,14 +28,7 @@
   border-radius: 50%;
 }
 
-.post{
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  border: 1px solid #2f3336;
-  border-top: 1px solid transparent;
-  padding: 12px;
-}
+
 
 .user-info{
   /*display:flex --> display:none*/
@@ -41,12 +42,4 @@
   display: none;
   align-items: center;
   gap: 24px;
-}
-
-.message{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #2f3336;
-  height: 40px;
 }

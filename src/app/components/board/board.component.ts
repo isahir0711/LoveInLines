@@ -273,17 +273,14 @@ export class BoardComponent {
     if (canvas == null) return;
     let canvasData = canvas.toDataURL('image/png');
 
-    const image: UploadImage={
-      imageBase64:canvasData,
-      imageName:'demoName',
-      imageType:'png'
-    }
-    this.apiService.uploadImage(image).pipe(
+    this.apiService.uploadImage(canvasData).pipe(
       catchError(err=>{
         console.error(err)
         throw err;
       })
     ).subscribe();
+
+
 
     const toastInfo:ToastInfo = {
       title:'Image uploaded succesfully',

@@ -17,6 +17,7 @@ export class DrawingsComponent {
     }
 
     posts: DrawingServerResponse[] = [];
+    loading: boolean = true;
 
     ngOnInit(): void {
         
@@ -25,7 +26,8 @@ export class DrawingsComponent {
     getDrawings(){
         this.apiService.getImages().pipe(
             map(res => {
-                this.posts = res;                
+                this.posts = res;
+                this.loading = false;              
             }),
             catchError(err=>{
                 console.error(err);
