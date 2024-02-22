@@ -1,27 +1,57 @@
-# LoveInLines
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
+# LoveInLines 🎨
 
-## Development server
+Platform to create drawings, alone or with a group, download and share that drawings, see what master pieces another users have been done and liking the ones you like the most **Work** **in** **progress**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Features 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Light/dark mode toggle
+- Real time drawing for the same room
+- Save/Export the drawing as png
+- Upload the drawing to cloud
+- See all of the drawings
 
-## Build
+## Tech Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**Client:** Angular, HTML, CSS, TypeScript
 
-## Running unit tests
+**Server:** .NET, C#
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Others:** Supabase, Azure, Vercel
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Run Locally 
 
-## Further help
+Clone the project
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+  git clone https://github.com/isahir0711/LoveInLines.git
+```
+
+Go to the project directory
+
+```bash
+  cd LoveInLines
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Modify the environment variables with your local URLs
+
+```bash
+    NG_APP_SOCKET_SERVER=wss://yourlocalurl
+    NG_APP_APIURL=https://yourlocalurl/api
+```
+
+
+Start the server
+
+```bash
+  ng serve
+```
+
