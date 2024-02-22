@@ -20,7 +20,6 @@ export class DrawingsComponent {
     loading: boolean = true;
 
     ngOnInit(): void {
-        
     }
 
     getDrawings(){
