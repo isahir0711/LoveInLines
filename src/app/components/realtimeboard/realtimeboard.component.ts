@@ -24,7 +24,7 @@ export class RealtimeboardComponent {
   private isErasing = false;
   startX = 0;
   startY = 0;
-  colorCode: string = '#ff0000';
+  colorCode: string = '#000000';
   lineWidth: number = 10;
   previousColor: string = this.colorCode;
 
@@ -40,7 +40,7 @@ export class RealtimeboardComponent {
     if(roomid === undefined) {alert(roomid); return;}
     this.rtservice.connectWebSocket(roomid);
 
-    this.colorCode = '#ff0000';
+    this.colorCode = '#000000';
 
     const colorpicker = document.getElementById('color') as HTMLInputElement;
     if (colorpicker == null) return;
@@ -123,8 +123,6 @@ export class RealtimeboardComponent {
     const canvasOffsetX = canvas.offsetLeft;
     const canvasOffsetY = canvas.offsetTop;
 
-    
-    
     this.rtservice.fetchMessage().pipe(
       map(res =>{
         this.drawAPoint(res);
@@ -260,8 +258,8 @@ export class RealtimeboardComponent {
 
   shareURL():void{
     // Select the text field
-    const urlstring = this.router.url;
-  navigator.clipboard.writeText("https://loveinlines.vercel.app"+urlstring).then(() => {
+    const urlstring = window.location.href;
+  navigator.clipboard.writeText(urlstring).then(() => {
     const toastInfo: ToastInfo = {
       title: 'URL copied to clipboard!',
       type: '',

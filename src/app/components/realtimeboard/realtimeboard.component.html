@@ -6,12 +6,12 @@
     <section class="drawing-space">
       <article class="tools">
         <div class="picker">
-          <input id="color" value="#ff0000" class="colorpicker" type="color">
-          <span>Color Picker</span>
+          <input id="color" name="color" value="#000000" class="colorpicker" type="color">
+          <label for="color" >Color Picker</label>
         </div>
         <div class="range">
-          <span>Line Width</span>
-          <input id="width" type="range" min="10" value="10" step="1" max="45">
+          <label for="width" >Line Width</label>
+          <input id="width" name="width" type="range" min="5" value="5" step="1" max="25">
         </div>
         <div class="actions">
           <app-button (click)="clean()" buttonIcon="trash-icon.svg" buttonText="Clear"></app-button>

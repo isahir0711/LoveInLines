@@ -23,7 +23,7 @@ export class BoardComponent {
   private isErasing = false;
   startX = 0;
   startY = 0;
-  colorCode: string = '#ff0000';
+  colorCode: string = '#000000';
   lineWidth: number = 5;
   previousColor: string = this.colorCode;
   points: Point[] = [];
@@ -38,7 +38,7 @@ export class BoardComponent {
 
 
   ngOnInit(): void {
-    this.colorCode = '#ff0000';
+    this.colorCode = '#000000';
 
     const colorpicker = document.getElementById('color') as HTMLInputElement;
     if (colorpicker == null) return;
@@ -55,9 +55,7 @@ export class BoardComponent {
   }
 
   loadURLImg(imgURI: string) {
-    const canvas = document.getElementById(
-      'drawing-canva'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     if (canvas == null) return;
     const ctx = canvas.getContext('2d');
     if (ctx == null) return;
@@ -110,9 +108,7 @@ export class BoardComponent {
     });
 
     canvas.addEventListener('mousemove', (event) => {
-      const canvas = document.getElementById(
-        'drawing-canva'
-      ) as HTMLCanvasElement;
+      const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
       const ctx = canvas.getContext('2d');
       if (ctx == null) return;
       if (canvas == null) return;
@@ -157,9 +153,7 @@ export class BoardComponent {
 
     canvas.addEventListener('touchmove', (event) => {
       event.preventDefault();
-      const canvas = document.getElementById(
-        'drawing-canva'
-      ) as HTMLCanvasElement;
+      const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
       const ctx = canvas.getContext('2d');
       if (ctx == null) return;
       if (canvas == null) return;
@@ -206,9 +200,7 @@ export class BoardComponent {
 
 
   drawStrokes() {
-    const canvas = document.getElementById(
-      'drawing-canva'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     if (ctx == null) return;
     if (canvas == null) return;
@@ -229,9 +221,7 @@ export class BoardComponent {
   }
 
   createCircle(x: number, y: number) {
-    const canvas = document.getElementById(
-      'drawing-canva'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     if (ctx == null) {
       return;

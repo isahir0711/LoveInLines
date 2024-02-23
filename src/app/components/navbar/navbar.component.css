@@ -10,7 +10,7 @@
     background-color: transparent;
     backdrop-filter: blur(25px);
     padding: 12px;
-    border-bottom: 1px solid #2f3336;
+    border-bottom: 1px solid #2f33367a;
     height: 7vh;
     z-index: 1;
 }
