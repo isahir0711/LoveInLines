@@ -261,7 +261,7 @@ export class RealtimeboardComponent {
   shareURL():void{
     // Select the text field
     const urlstring = this.router.url;
-  navigator.clipboard.writeText(urlstring).then(() => {
+  navigator.clipboard.writeText("https://loveinlines.vercel.app"+urlstring).then(() => {
     const toastInfo: ToastInfo = {
       title: 'URL copied to clipboard!',
       type: '',
