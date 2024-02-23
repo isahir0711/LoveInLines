@@ -31,7 +31,7 @@ export class RealtimeboardComponent {
   points: Point[] = [];
   strokes: Point[][] = [];
 
-  constructor(public toastService: ToastService, private route: ActivatedRoute, private router: Router, private rtservice: RealtimedrawingService) {
+  constructor(public toastService: ToastService, private route: ActivatedRoute, private router: Router, private rtservice: RealtimedrawingService,private apiService:ApiService) {
   }
 
   ngOnInit(): void {
@@ -258,6 +258,18 @@ export class RealtimeboardComponent {
     });
   }
 
+  shareURL():void{
+    // Select the text field
+    const urlstring = this.router.url;
+  navigator.clipboard.writeText(urlstring).then(() => {
+    const toastInfo: ToastInfo = {
+      title: 'URL copied to clipboard!',
+      type: '',
+    };
+    this.toastService.add(toastInfo);
+  },() => {
+  });
+  }
   
   //TODO: Fix the undo function, it only fails when we draw points clicking, if all of the content are lines it does work correctly
   /*
@@ -335,12 +347,6 @@ export class RealtimeboardComponent {
     ctx.stroke();
   }
 
-  shareOnFacebook() {
-    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
-    if (canvas == null) return;
-    let canvasData = canvas.toDataURL('image/png');
-
-  }
 
   saveImg(): void {
     const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
@@ -358,7 +364,26 @@ export class RealtimeboardComponent {
     this.toastService.add(toastInfo);
   }
 
-  shareOnTwitter() {
+  uploadImage() {
+    const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+    if (canvas == null) return;
+    let canvasData = canvas.toDataURL('image/png');
+
+    this.apiService.uploadImage(canvasData).pipe(
+      catchError(err=>{
+        console.error(err)
+        throw err;
+      })
+    ).subscribe();
+
+
+
+    const toastInfo:ToastInfo = {
+      title:'Image uploaded succesfully',
+      type:''
+    }
+    this.toastService.add(toastInfo);
+    this.clean();
   }
 
   updateURL() {

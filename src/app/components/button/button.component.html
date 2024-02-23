@@ -1,5 +1,5 @@
 @if (isToggle) {
-    <button (click)="toggleButton()" class="btn" [ngClass]="toggle ? 'toggled' : ''" [style.background-color]="backgroundColor">
+    <button (click)="toggleButton()" class="btn" [style.cursor]="cursorType" [ngClass]="toggle ? 'toggled' : ''" [style.background-color]="backgroundColor">
         @if (buttonText != 'empty') {
         {{buttonText}}
         }
@@ -9,7 +9,7 @@
     </button>
 }
 @else {
-    <button (click)="toggleButton()" class="btn" [style.background-color]="backgroundColor">
+    <button (click)="toggleButton()" class="btn" [style.cursor]="cursorType" [style.background-color]="backgroundColor">
         @if (buttonText != 'empty') {
         {{buttonText}}
         }

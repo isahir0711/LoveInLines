@@ -307,11 +307,7 @@ export class BoardComponent {
     this.toastService.add(toastInfo);
 
   }
-
-  shareOnTwitter() {
-    console.log(this.strokes);
-  }
-
+  
   updateURL() {
     const canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
     if (canvas == null) return;

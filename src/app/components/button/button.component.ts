@@ -20,6 +20,8 @@ export class ButtonComponent {
 
   @Input() isToggle: boolean = false;
 
+  @Input() cursorType: string = 'pointer';
+
   toggle = false;
   ngOnInit(): void {
   }
