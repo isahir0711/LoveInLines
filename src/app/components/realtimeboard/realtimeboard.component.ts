@@ -11,6 +11,7 @@ import { RealtimedrawingService } from '../../services/websocket/realtimedrawing
 import { RealTimeDrawingInfo } from '../../DTOS/realTime';
 import { Observable, catchError, map, timeout } from 'rxjs';
 import { ApiService } from '../../services/api/api.service';
+import { ConvertToBlob } from '../../Utilities/convertToBlob';
 
 @Component({
   selector: 'app-realtimeboard',
@@ -256,17 +257,45 @@ export class RealtimeboardComponent {
     });
   }
 
-  shareURL():void{
-    // Select the text field
+  shareURL(): void {
     const urlstring = window.location.href;
-  navigator.clipboard.writeText(urlstring).then(() => {
-    const toastInfo: ToastInfo = {
-      title: 'URL copied to clipboard!',
-      type: '',
+    const data = {
+      title: 'LoveInLines',
+      text: "Let's draw together",
+      url: urlstring,
     };
-    this.toastService.add(toastInfo);
-  },() => {
-  });
+    if(navigator.canShare(data)){
+      navigator.share(data);
+    }
+    else{
+    navigator.clipboard.writeText(urlstring).then(() => {
+      const toastInfo: ToastInfo = {
+        title: 'URL copied to clipboard!',
+        type: '',
+      };
+      this.toastService.add(toastInfo);
+    }, () => {
+    });
+    }
+
+  }
+
+  shareImg(){
+
+    var canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+    if (canvas == null) return;
+    var dataURL = canvas.toDataURL('image/png');
+    var blob = ConvertToBlob(dataURL);
+    var file = new File([blob], 'canvas_image.png', {type: 'image/png'});
+
+    const data = {
+      title: 'LoveInLines',
+      text: "Let's draw together",
+      files: [file]
+    };
+    if(navigator.canShare(data)){
+      navigator.share(data);
+    }
   }
   
   //TODO: Fix the undo function, it only fails when we draw points clicking, if all of the content are lines it does work correctly

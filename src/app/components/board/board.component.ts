@@ -10,6 +10,7 @@ import { ToastComponent } from '../toast/toast.component';
 import { ApiService } from '../../services/api/api.service';
 import { UploadImage } from '../../interfaces/image';
 import { catchError } from 'rxjs';
+import { ConvertToBlob } from '../../Utilities/convertToBlob';
 
 @Component({
   selector: 'app-board',
@@ -270,8 +271,6 @@ export class BoardComponent {
       })
     ).subscribe();
 
-
-
     const toastInfo:ToastInfo = {
       title:'Image uploaded succesfully',
       type:''
@@ -296,6 +295,24 @@ export class BoardComponent {
     };
     this.toastService.add(toastInfo);
 
+  }
+
+  shareImg(){
+
+    var canvas = document.getElementById('drawing-canva') as HTMLCanvasElement;
+    if (canvas == null) return;
+    var dataURL = canvas.toDataURL('image/png');
+    var blob = ConvertToBlob(dataURL);
+    var file = new File([blob], 'canvas_image.png', {type: 'image/png'});
+
+    const data = {
+      title: 'LoveInLines',
+      text: "Let's draw together",
+      files: [file]
+    };
+    if(navigator.canShare(data)){
+      navigator.share(data);
+    }
   }
   
   updateURL() {
