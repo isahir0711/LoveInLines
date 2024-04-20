@@ -1,13 +1,33 @@
+.cont{
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+    width: 100vw;
+    flex-wrap: wrap;
+    gap: 48px;
+}
+
 .drawing-space{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 650px;
     gap: 32px;
-    margin: 0 auto;
     padding: 12px;
 }
 
+.drawing-board{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
+}
+
+#drawing-canva{
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
 .tools{
     display: flex;
@@ -26,6 +46,8 @@
 .actions{
     display: flex;
     gap: 12px;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .title{
@@ -44,26 +66,11 @@
     gap: 12px;
 }
 
-.drawing-board{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-inline: 4px;
-    margin-bottom: 60px;
-    padding-top: 24px;
-}
-
-#drawing-canva{
-    margin: 0 auto;
-    border-radius: 4px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
 
 .share{
     display: flex;
     justify-content: space-around;
     gap: 12px;
-    width: 100%;
 }
 
 .colorpicker{
@@ -87,5 +94,9 @@
 @media only screen and (max-width: 600px) {
     .share{
         flex-direction: column;
+    }
+
+    .actions{
+        flex-direction: row;
     }
   }

@@ -3,21 +3,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
     top: 0;
     width: 100vw;
     margin: 0 auto;
-    background-color: transparent;
-    backdrop-filter: blur(25px);
-    padding: 12px;
-    border-bottom: 1px solid #2f33367a;
-    height: 7vh;
+    height: 10vh;
     z-index: 1;
+}
+
+.main-links{
+    background-color: transparent;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    backdrop-filter: blur(25px);
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    gap: 16px;
+    padding: 8px 14px;
 }
 
 .solid {
     color: #7267ff;
-    border-bottom: 1px solid #2f3336;
+    border: 1px solid rgba(143, 143, 143, 0.568);
 }
 
 .icon-wrapper {
@@ -32,8 +38,3 @@
     width: 30px;
 }
 
-@media only screen and (max-width: 600px) {
-    .navbar {
-        height: 10vh;
-    }
-}

@@ -81,10 +81,10 @@ export class BoardComponent {
     const canvasOffsetX = canvas.offsetLeft;
     const canvasOffsetY = canvas.offsetTop;
 
-    canvas.width = 650;
-    if (window.matchMedia('(max-width: 650px)').matches) {
-      canvas.width = 325;
-    }
+    canvas.width = 325;
+    // if (window.matchMedia('(max-width: 650px)').matches) {
+    //   canvas.width = 325;
+    // }
     canvas.height = 500 - canvasOffsetY;
 
     // Set the background color

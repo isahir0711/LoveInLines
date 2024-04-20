@@ -35,4 +35,12 @@ export class ApiService {
   getImages(): Observable<DrawingServerResponse[]> {
     return this.http.get<DrawingServerResponse[]>(this.apiURL + "/getDrawings");
   }
+
+  githubSignIn():Observable<string>{
+    return this.http.get<string>(this.apiURL + "/SignInGithub");
+  }
+
+  sendToken(token: string):Observable<any>{
+    return this.http.post<any>(this.apiURL + "/GetToken",token);
+  }
 }

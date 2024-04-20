@@ -3,13 +3,14 @@ import { Router, RouterLink } from '@angular/router';
 import { LinkComponent } from "../link/link.component";
 import { ApiService } from '../../services/api/api.service';
 import { catchError, map } from 'rxjs';
+import { ButtonComponent } from "../button/button.component";
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.css',
-    imports: [RouterLink, LinkComponent]
+    imports: [RouterLink, LinkComponent, ButtonComponent]
 })
 export class NavbarComponent {
 
@@ -18,7 +19,7 @@ export class NavbarComponent {
 
     ngOnInit(): void {
         document.addEventListener("scroll", function () {
-            const navbar = document.getElementById("navbar") as HTMLElement;
+            const navbar = document.getElementById("main-links") as HTMLElement;
 
             if (window.scrollY > 70) {
                 navbar.classList.add('solid');

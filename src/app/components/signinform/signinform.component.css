@@ -1,0 +1,10 @@
+.signin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 16px;
+    height: 90vh;
+    padding: 12px;
+}

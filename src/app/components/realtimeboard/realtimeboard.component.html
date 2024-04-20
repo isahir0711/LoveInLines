@@ -1,39 +1,42 @@
+<div class="cont">
 
-<div class="drawing-board">
+  <div class="drawing-board">
     <canvas id="drawing-canva"></canvas>
-    </div>
-    
-    <section class="drawing-space">
-      <article class="tools">
-        <div class="picker">
-          <input id="color" name="color" value="#000000" class="colorpicker" type="color">
-          <label for="color" >Color Picker</label>
-        </div>
-        <div class="range">
-          <label for="width" >Line Width</label>
-          <input id="width" name="width" type="range" min="5" value="5" step="1" max="25">
-        </div>
-        <div class="actions">
-          <app-button (click)="clean()" buttonIcon="trash-icon.svg" buttonText="Clear"></app-button>
-          <app-button (click)="setEraser()" [isToggle]="true" buttonIcon="erase-icon.svg" buttonText="Eraser"></app-button>
-          <!--
-            TODO: Fix the undo function, it only fails when we draw points clicking, if all of the content are lines it does work correctly 
-            <app-button (click)="undo()" buttonIcon="undo-icon.svg" buttonText="Undo"></app-button>
-          -->
-        </div>
-      </article>
-    
-    
-      <h2 style="text-align: center;">Share your masterpiece!</h2>
-      <section class="share">
-        <app-button (click)="saveImg()" buttonIcon="save-icon.svg" buttonText="Save"></app-button>
-        <app-button (click)="uploadImage()" buttonIcon="upload-icon.svg" buttonText="Upload"></app-button>
-        <app-button (click)="shareImg()" buttonIcon="media-icon.svg" buttonText="Share your drawing"></app-button>
-        <app-button  (click)="shareURL()" buttonIcon="share-icon.svg" buttonText="Share the URL"></app-button>
-      </section>
+  </div>
+
+  <section class="drawing-space">
+    <article class="tools">
+      <div class="picker">
+        <input id="color" name="color" value="#000000" class="colorpicker" type="color">
+        <label for="color">Color Picker</label>
+      </div>
+      <div class="range">
+        <label for="width">Line Width</label>
+        <input id="width" name="width" type="range" min="5" value="5" step="1" max="25">
+      </div>
+      <div class="actions">
+        <app-button (click)="clean()" buttonIcon="trash-icon.svg" buttonText="Clear"></app-button>
+        <app-button (click)="setEraser()" [isToggle]="true" buttonIcon="erase-icon.svg"
+          buttonText="Eraser"></app-button>
+        <!--
+          TODO: Fix the undo function, it only fails when we draw points clicking, if all of the content are lines it does work correctly 
+          <app-button (click)="undo()" buttonIcon="undo-icon.svg" buttonText="Undo"></app-button>
+        -->
+      </div>
+    </article>
+
+
+    <h2 style="text-align: center;">Share your masterpiece!</h2>
+    <section class="share">
+      <app-button (click)="saveImg()" buttonIcon="save-icon.svg" buttonText="Save"></app-button>
+      <app-button (click)="uploadImage()" buttonIcon="upload-icon.svg" buttonText="Upload"></app-button>
+      <app-button (click)="shareImg()" buttonIcon="media-icon.svg" buttonText="Share your drawing"></app-button>
+      <app-button (click)="shareURL()" buttonIcon="share-icon.svg" buttonText="Share the URL"></app-button>
     </section>
-    
-    
-    <div *ngFor="let toast of toastService.toasts; let i = index" class="toast">
-      <app-toast [toastInfo]="toast" [tId]="i"></app-toast>
-    </div>
+  </section>
+</div>
+
+
+<div *ngFor="let toast of toastService.toasts; let i = index" class="toast">
+  <app-toast [toastInfo]="toast" [tId]="i"></app-toast>
+</div>

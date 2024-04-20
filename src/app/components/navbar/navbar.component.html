@@ -1,5 +1,10 @@
 <nav class="navbar" id="navbar">
-    <app-link linkText="All drawings" linkRoute="Drawings"></app-link>
-    <app-link linkText="Home" linkRoute=""></app-link>
-    <app-link linkText="Draw Together" (click)="createRoom()"></app-link>
+    
+    <div class="main-links" id="main-links">
+        <app-link linkText="Home" linkRoute=""></app-link>
+        <app-link linkText="All drawings" linkRoute="Drawings"></app-link>
+        <app-link linkText="Draw Together" (click)="createRoom()"></app-link>
+        <app-button [isLink]="true" linkURL="/SignIn" buttonText="Sign In"></app-button>
+    </div>
+
 </nav>

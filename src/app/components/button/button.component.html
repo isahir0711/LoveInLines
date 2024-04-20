@@ -1,20 +1,30 @@
 @if (isToggle) {
-    <button (click)="toggleButton()" class="btn" [style.cursor]="cursorType" [ngClass]="toggle ? 'toggled' : ''" [style.background-color]="backgroundColor">
-        @if (buttonText != 'empty') {
-        {{buttonText}}
-        }
+    <button type="button" (click)="toggleButton()" class="btn" [style.cursor]="cursorType" [ngClass]="toggle ? 'toggled' : ''" [style.background-color]="backgroundColor">
         @if (buttonIcon != 'empty') {
         <img class="icon" src="assets/icons/{{buttonIcon}}" alt="{{buttonText}}-icon">
         }
-    </button>
-}
-@else {
-    <button (click)="toggleButton()" class="btn" [style.cursor]="cursorType" [style.background-color]="backgroundColor">
         @if (buttonText != 'empty') {
         {{buttonText}}
         }
+    </button>
+}
+@else if (isLink) {
+    <a (click)="toggleButton()" [routerLink]="linkURL" class="btn" [style.cursor]="cursorType" [style.background-color]="backgroundColor">
         @if (buttonIcon != 'empty') {
         <img class="icon" src="assets/icons/{{buttonIcon}}"  alt="{{buttonText}}-icon">
+        }
+        @if (buttonText != 'empty') {
+        {{buttonText}}
+        }
+    </a>
+}
+@else {
+    <button type="button" (click)="toggleButton()" class="btn" [style.cursor]="cursorType" [style.background-color]="backgroundColor">
+        @if (buttonIcon != 'empty') {
+        <img class="icon" src="assets/icons/{{buttonIcon}}"  alt="{{buttonText}}-icon">
+        }
+        @if (buttonText != 'empty') {
+        {{buttonText}}
         }
     </button>
 }
