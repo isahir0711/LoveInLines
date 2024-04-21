@@ -29,7 +29,6 @@ export class SigninformComponent {
             })
         ).subscribe();
 
-        this.router.navigate(['']);
     }
 
     signInGoogle() {
@@ -42,8 +41,6 @@ export class SigninformComponent {
                 throw err;
             })
         ).subscribe();
-        
-        this.router.navigate(['']);
     }
 
 }
