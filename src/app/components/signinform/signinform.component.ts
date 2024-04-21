@@ -21,25 +21,29 @@ export class SigninformComponent {
         this.apiService.githubSignIn().pipe(
             map(res => {
                 this.url = res;
-                console.log(this.url);
+                window.location.href = this.url;
                 
             }),
             catchError(err => {
                 throw err;
             })
         ).subscribe();
+
+        this.router.navigate(['']);
     }
 
     signInGoogle() {
         this.apiService.googleSignIn().pipe(
             map(res => {
                 this.url = res;
-                
+                window.location.href = this.url;
             }),
             catchError(err => {
                 throw err;
             })
         ).subscribe();
+        
+        this.router.navigate(['']);
     }
 
 }
