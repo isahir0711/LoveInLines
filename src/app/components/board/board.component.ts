@@ -11,13 +11,14 @@ import { ApiService } from '../../services/api/api.service';
 import { UploadImage } from '../../interfaces/image';
 import { catchError } from 'rxjs';
 import { ConvertToBlob } from '../../Utilities/convertToBlob';
+import { AuthComponent } from "../auth/auth.component";
 
 @Component({
-  selector: 'app-board',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent, ToastComponent, ReactiveFormsModule],
-  templateUrl: './board.component.html',
-  styleUrl: './board.component.css'
+    selector: 'app-board',
+    standalone: true,
+    templateUrl: './board.component.html',
+    styleUrl: './board.component.css',
+    imports: [CommonModule, ButtonComponent, ToastComponent, ReactiveFormsModule, AuthComponent]
 })
 export class BoardComponent {
   private isPainting = false;

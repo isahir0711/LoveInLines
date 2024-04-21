@@ -26,7 +26,17 @@
     <h2 style="text-align: center;">Share your masterpiece!</h2>
     <section class="share">
       <app-button (click)="saveImg()" buttonIcon="save-icon.svg" buttonText="Save"></app-button>
-      <app-button (click)="uploadImage()" buttonIcon="upload-icon.svg" buttonText="Upload"></app-button>
+
+      <app-auth>
+        <ng-container Authorized>
+          <app-button (click)="uploadImage()" buttonIcon="upload-icon.svg" buttonText="Upload"></app-button>
+        </ng-container>
+        
+        <ng-container notAuthorized>
+          <app-button disabled="true" buttonIcon="upload-icon.svg" buttonText="Upload(Login To Upload)"></app-button>
+        </ng-container>
+      </app-auth>
+
       <app-button (click)="shareImg()" buttonIcon="media-icon.svg" buttonText="Share your drawing"></app-button>
     </section>
   </section>

@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment.development';
 import { Observable, catchError } from 'rxjs';
 import { DrawingServerResponse, UploadImage } from '../../interfaces/image';
 import { ConvertToBlob } from '../../Utilities/convertToBlob';
+import { AuthResponse, CallbackRequest } from '../../DTOS/Callback';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,14 @@ export class ApiService {
     return this.http.get<string>(this.apiURL + "/SignInGithub");
   }
 
-  sendToken(token: string):Observable<any>{
-    return this.http.post<any>(this.apiURL + "/GetToken",token);
+  googleSignIn():Observable<string>{
+    return this.http.get<string>(this.apiURL + "/SignInGoogle");
+  }
+
+  sendURI(uripet: string):Observable<AuthResponse>{
+    const callbackRequest:CallbackRequest={
+      uri:uripet
+    }
+    return this.http.post<AuthResponse>(this.apiURL + "/CallBackURI",callbackRequest);
   }
 }

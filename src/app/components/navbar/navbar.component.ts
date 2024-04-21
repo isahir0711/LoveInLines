@@ -4,17 +4,19 @@ import { LinkComponent } from "../link/link.component";
 import { ApiService } from '../../services/api/api.service';
 import { catchError, map } from 'rxjs';
 import { ButtonComponent } from "../button/button.component";
+import { AuthComponent } from "../auth/auth.component";
+import { SecurityService } from '../../services/security/security.service';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.css',
-    imports: [RouterLink, LinkComponent, ButtonComponent]
+    imports: [RouterLink, LinkComponent, ButtonComponent, AuthComponent]
 })
 export class NavbarComponent {
 
-    constructor(private apiService: ApiService,private router:Router) {
+    constructor(private apiService: ApiService,private router:Router,private securityService:SecurityService) {
     }
 
     ngOnInit(): void {
@@ -42,5 +44,11 @@ export class NavbarComponent {
                 throw err
             })
         ).subscribe();
+    }
+
+    logOut(){
+        this.securityService.logOut();
+        this.router.navigate(["SignIn"])
+
     }
 }

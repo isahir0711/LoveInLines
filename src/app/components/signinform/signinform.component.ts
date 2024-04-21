@@ -12,17 +12,34 @@ import { Router } from '@angular/router';
     imports: [ButtonComponent]
 })
 export class SigninformComponent {
-    constructor(private apiService:ApiService,private router:Router) {
+    constructor(private apiService: ApiService, private router: Router) {
     }
-    
-    signInGithub(){
+
+    url = "";
+
+    signInGithub() {
         this.apiService.githubSignIn().pipe(
-            map(res=>{
-                window.location.href = res;
+            map(res => {
+                this.url = res;
+                console.log(this.url);
+                
             }),
-            catchError(err=>{
+            catchError(err => {
                 throw err;
             })
         ).subscribe();
     }
+
+    signInGoogle() {
+        this.apiService.googleSignIn().pipe(
+            map(res => {
+                this.url = res;
+                
+            }),
+            catchError(err => {
+                throw err;
+            })
+        ).subscribe();
+    }
+
 }

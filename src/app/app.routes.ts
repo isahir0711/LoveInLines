@@ -15,5 +15,4 @@ export const routes: Routes = [
     {path:'SignIn',component:SignInComponent,title:'Sign In'},
     {path:'HandleSession',component:HandlesessionComponent,title:'HandleSession'},
 
-    {path:'**', redirectTo:''}
 ];
