@@ -267,7 +267,6 @@ export class BoardComponent {
 
     this.apiService.uploadImage(canvasData).pipe(
       catchError(err=>{
-        console.error(err)
         throw err;
       })
     ).subscribe();

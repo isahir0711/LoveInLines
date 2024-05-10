@@ -48,10 +48,8 @@ export class ApiService {
     return this.http.get<string>(this.apiURL + "/SignInGoogle");
   }
 
-  getSession(): Observable<string> {
-    const token = localStorage.getItem('token');
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.get<string>(this.apiURL + "/GetSession", { headers });
+  getPost(id:string): Observable<DrawingServerResponse> {
+    return this.http.get<DrawingServerResponse>(this.apiURL + `/drawings/${id}`);
   }
 
   sendURI(uripet: string): Observable<AuthResponse> {

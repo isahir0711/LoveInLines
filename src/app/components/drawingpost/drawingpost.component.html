@@ -1,1 +1,10 @@
-<p>drawingpost works!</p>
+<div style="padding: 12px;">
+    <figure [style.view-transition-name]="'post-' + drawing.id">
+        <img  class="post"  [src]="drawing.drawingURL" />
+        <figcaption>
+          <!-- <p >Likes: {{post.totalLikes}}</p> -->
+          <p></p>
+          <img class="profile-pic" [src]="drawing.userProfilePic" loading="lazy" alt="">
+        </figcaption>
+    </figure>
+</div>

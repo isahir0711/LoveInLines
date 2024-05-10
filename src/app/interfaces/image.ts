@@ -8,4 +8,5 @@ export interface DrawingServerResponse{
     drawingURL:string,
     totalLikes:number,
     userProfilePic:string,
+    id:number
 }

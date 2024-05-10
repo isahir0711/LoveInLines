@@ -1,11 +1,14 @@
 <section class="container">
-  @if(loading){
+  <!-- @if(loading){
     <h2>Loading</h2>
   }
   @else{
-    @for (post of posts; track $index) {
-      <figure>
-        <img loading="lazy" [src]="post.drawingURL" alt="A windmill" />
+    
+  } -->
+  @for (post of posts; track $index) {
+    <a routerLink="/Drawing/{{post.id}}">
+      <figure [style.view-transition-name]="'post-' + post.id" >
+        <img [src]="post.drawingURL" alt="A windmill" />
         <figcaption>
           <!-- <p >Likes: {{post.totalLikes}}</p> -->
           <p></p>
@@ -13,9 +16,6 @@
 
         </figcaption>
       </figure>
-    }
+    </a>
   }
-  
-
-
 </section>

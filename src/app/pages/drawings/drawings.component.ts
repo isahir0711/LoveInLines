@@ -3,13 +3,14 @@ import { ButtonComponent } from "../../components/button/button.component";
 import { ApiService } from '../../services/api/api.service';
 import { DrawingServerResponse } from '../../interfaces/image';
 import { catchError, map } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-drawings',
     standalone: true,
     templateUrl: './drawings.component.html',
     styleUrl: './drawings.component.css',
-    imports: [ButtonComponent]
+    imports: [ButtonComponent,RouterModule]
 })
 export class DrawingsComponent {
     constructor(private apiService: ApiService) {
@@ -33,5 +34,9 @@ export class DrawingsComponent {
                 throw err;
             })
         ).subscribe();
+    }
+
+    getViewTransitionName(id:number){
+        return `view-transition-name: post-${id};`;
     }
 }
