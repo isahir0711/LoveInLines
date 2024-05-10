@@ -26,7 +26,10 @@ export class ApiService {
     const formData = new FormData();
     formData.append('File', blob, 'image.png');
 
-    return this.http.post<any>(this.apiURL + '/uploadImage', formData).pipe(
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+
+    return this.http.post<any>(this.apiURL + '/uploadImage', formData,{headers}).pipe(
       catchError(err => {
         throw err;
       })

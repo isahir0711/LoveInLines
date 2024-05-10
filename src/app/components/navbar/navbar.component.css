@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 0;
+    bottom: 0;
     width: 100vw;
     margin: 0 auto;
     height: 10vh;
@@ -11,19 +11,19 @@
 }
 
 .main-links{
-    background-color: transparent;
+    background-color: #ffff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     backdrop-filter: blur(25px);
     display: flex;
     align-items: center;
     border-radius: 8px;
     gap: 16px;
+    border: 1px solid rgba(143, 143, 143, 0.568);
     padding: 8px 14px;
 }
 
 .solid {
     color: #7267ff;
-    border: 1px solid rgba(143, 143, 143, 0.568);
 }
 
 .icon-wrapper {

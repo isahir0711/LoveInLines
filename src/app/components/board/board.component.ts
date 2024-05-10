@@ -272,6 +272,7 @@ export class BoardComponent {
       })
     ).subscribe();
 
+
     const toastInfo:ToastInfo = {
       title:'Image uploaded succesfully',
       type:''

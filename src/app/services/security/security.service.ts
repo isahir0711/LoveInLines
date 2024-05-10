@@ -46,7 +46,6 @@ export class SecurityService {
     localStorage.removeItem(this.tokenkey);
     localStorage.removeItem(this.reftokenkey);
     localStorage.removeItem(this.expirationkey);
-    // localStorage.removeItem(this.expirationkey);
   }
 
   saveToken(authenticationResponse: AuthResponse){

@@ -12,13 +12,14 @@ import { RealTimeDrawingInfo } from '../../DTOS/realTime';
 import { Observable, catchError, map, timeout } from 'rxjs';
 import { ApiService } from '../../services/api/api.service';
 import { ConvertToBlob } from '../../Utilities/convertToBlob';
+import { AuthComponent } from "../auth/auth.component";
 
 @Component({
-  selector: 'app-realtimeboard',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent, ToastComponent, ReactiveFormsModule,],
-  templateUrl: './realtimeboard.component.html',
-  styleUrl: './realtimeboard.component.css',
+    selector: 'app-realtimeboard',
+    standalone: true,
+    templateUrl: './realtimeboard.component.html',
+    styleUrl: './realtimeboard.component.css',
+    imports: [CommonModule, ButtonComponent, ToastComponent, ReactiveFormsModule, AuthComponent]
 })
 export class RealtimeboardComponent {
   private isPainting = false;

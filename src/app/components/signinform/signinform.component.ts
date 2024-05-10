@@ -21,8 +21,9 @@ export class SigninformComponent {
         this.apiService.githubSignIn().pipe(
             map(res => {
                 this.url = res;
-                window.location.href = this.url;
                 //window.location.href = this.url;
+                console.log(this.url);
+                
                 
             }),
             catchError(err => {
@@ -36,7 +37,7 @@ export class SigninformComponent {
         this.apiService.googleSignIn().pipe(
             map(res => {
                 this.url = res;
-                window.location.href = this.url;
+                console.log(this.url);
             }),
             catchError(err => {
                 throw err;

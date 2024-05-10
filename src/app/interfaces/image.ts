@@ -6,5 +6,6 @@ export interface UploadImage{
 
 export interface DrawingServerResponse{
     drawingURL:string,
-    totalLikes:number
+    totalLikes:number,
+    userProfilePic:string,
 }
