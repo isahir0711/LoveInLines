@@ -41,14 +41,20 @@ export class ApiService {
     return this.http.get<string>(this.apiURL + "/SignInGithub");
   }
 
-  googleSignIn():Observable<string>{
+  googleSignIn(): Observable<string> {
     return this.http.get<string>(this.apiURL + "/SignInGoogle");
   }
 
-  sendURI(uripet: string):Observable<AuthResponse>{
-    const callbackRequest:CallbackRequest={
-      uri:uripet
-    }
-    return this.http.post<AuthResponse>(this.apiURL + "/CallBackURI",callbackRequest);
+  getSession(): Observable<string> {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.get<string>(this.apiURL + "/GetSession", { headers });
+  }
+
+  sendURI(uripet: string): Observable<AuthResponse> {
+    const callbackRequest: CallbackRequest = {
+      uri: uripet
+    };
+    return this.http.post<AuthResponse>(this.apiURL + "/CallBackURI", callbackRequest);
   }
 }

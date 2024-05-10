@@ -24,19 +24,19 @@ export class SecurityService {
       return false;
     }
 
-    // const expiration = localStorage.getItem(this.expirationkey);
+    const expiration = localStorage.getItem(this.expirationkey);
 
-    // if(!expiration)
-    // {
-    //   return false;
-    // }
+    if(!expiration)
+    {
+      return false;
+    }
 
-    // const expirationdate = new Date(expiration);
+    const expirationdate = new Date(expiration);
 
-    // if(expirationdate <= new Date()){
-    //   this.logOut();
-    //   return false;
-    // }
+    if(expirationdate <= new Date()){
+      this.logOut();
+      return false;
+    }
 
     return true;
 

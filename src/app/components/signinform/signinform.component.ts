@@ -22,6 +22,7 @@ export class SigninformComponent {
             map(res => {
                 this.url = res;
                 window.location.href = this.url;
+                //window.location.href = this.url;
                 
             }),
             catchError(err => {

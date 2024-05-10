@@ -48,7 +48,7 @@ export class NavbarComponent {
 
     logOut(){
         this.securityService.logOut();
-        this.router.navigate(["SignIn"])
+        this.router.navigate([''])
 
     }
 }
