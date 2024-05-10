@@ -11,19 +11,14 @@
 }
 
 .main-links{
-    background-color: #ffff;
+    background-color: var(--nav-background);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    backdrop-filter: blur(25px);
     display: flex;
     align-items: center;
     border-radius: 8px;
     gap: 16px;
     border: 1px solid rgba(143, 143, 143, 0.568);
     padding: 8px 14px;
-}
-
-.solid {
-    color: #7267ff;
 }
 
 .icon-wrapper {

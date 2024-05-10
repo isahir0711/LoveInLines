@@ -7,7 +7,7 @@ import { HandlesessionComponent } from './pages/handlesession/handlesession.comp
 
 export const routes: Routes = [
 
-    {path:'',component:HomeComponent,title:'I let you cook'},
+    {path:'Home',component:HomeComponent,title:'I let you cook'},
 
     // {path:'Room/:roomId',component:RoomComponent,title:'Together!!'},
     {path:'Together/:room',component:RoomComponent,title:'Together!!'},

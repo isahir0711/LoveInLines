@@ -1,16 +1,16 @@
 <nav class="navbar" id="navbar">
     
     <div class="main-links" id="main-links">
-        <app-link linkText="Home" linkRoute=""></app-link>
-        <app-link linkText="All drawings" linkRoute="Drawings"></app-link>
-        <app-link linkText="Draw Together" (click)="createRoom()"></app-link>
+        <app-link linkText="Home" linkRoute="/Home" linkIcon="home.svg"></app-link>
+        <app-link linkText="All drawings" linkRoute="/Drawings" linkIcon="drawings.svg"></app-link>
+        <app-link linkText="Draw Together" (click)="createRoom()" linkIcon="together.svg"></app-link>
 
         <app-auth>
             <ng-container Authorized>
-                <app-button (click)="logOut()" buttonText="Log Out"></app-button>
+                <app-button (click)="logOut()" buttonText="Log Out" buttonIcon="logout.svg"></app-button>
             </ng-container>
             <ng-container notAuthorized>
-                <app-button [isLink]="true" linkURL="/SignIn" buttonText="Sign In"></app-button>
+                <app-button [isLink]="true" linkURL="/SignIn" buttonText="Sign In" buttonIcon="login.svg"></app-button>
             </ng-container>
             
         </app-auth>
