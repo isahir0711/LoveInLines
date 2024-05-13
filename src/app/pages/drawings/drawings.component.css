@@ -54,7 +54,7 @@ figcaption {
 
 @media only screen and (width < 600px) {
   .container{
-    column-count: 3;
+    column-count: 2;
     padding-top: 3vh;
   }
 
