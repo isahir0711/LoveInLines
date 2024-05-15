@@ -1,0 +1,32 @@
+.skeleton-loader {
+    display: grid;
+    gap: 10px;
+    grid-auto-rows: 20px;
+  }
+  
+  .skeleton-item {
+    background: #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  .skeleton-item:nth-child(odd) {
+    grid-row-end: span 5;
+  }
+  
+  .skeleton-item:nth-child(even) {
+    grid-row-end: span 7;
+  }
+  
+  @keyframes pulse {
+    0% {
+      background-color: #eee;
+    }
+    50% {
+      background-color: #ccc;
+    }
+    100% {
+      background-color: #eee;
+    }
+  }

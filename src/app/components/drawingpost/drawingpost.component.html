@@ -1,10 +1,10 @@
 <div style="padding: 12px; max-width: 500px; margin: 0 auto;">
-    <figure [style.view-transition-name]="'post-' + drawing.id">
+    <figure>
         <img  class="post"  [src]="drawing.drawingURL" />
         <figcaption>
           <!-- <p >Likes: {{post.totalLikes}}</p> -->
           <p></p>
-          <img class="profile-pic" [src]="drawing.userProfilePic" loading="lazy" alt="">
+          <img class="profile-pic" [src]="drawing.userProfilePic" alt="">
         </figcaption>
     </figure>
 </div>

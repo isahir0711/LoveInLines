@@ -23,6 +23,10 @@ export class DrawingpostComponent {
   vname = 'post' + this.postId;
 
   ngOnInit(): void {
+    
+  }
+
+  ngAfterViewInit(): void {
     const params = this.route.params.subscribe(params => {
       this.postId = params['postId'];
     });

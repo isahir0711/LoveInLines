@@ -1,20 +1,21 @@
 <section class="container">
-  <!-- @if(loading){
-    <h2>Loading</h2>
+  @if(loading){
+    <app-skeletonloader></app-skeletonloader>
   }
   @else{
+    @for (post of posts; track $index) {
+      <a routerLink="/Drawing/{{post.id}}">
+        <figure>
+          <img [src]="post.drawingURL" alt="A windmill" />
+          <figcaption>
+            <!-- <p >Likes: {{post.totalLikes}}</p> -->
+            <img class="profile-pic" [src]="post.userProfilePic" loading="lazy" alt="">
     
-  } -->
-  @for (post of posts; track $index) {
-    <a routerLink="/Drawing/{{post.id}}">
-      <figure [style.view-transition-name]="'post-' + post.id" >
-        <img [src]="post.drawingURL" alt="A windmill" />
-        <figcaption>
-          <!-- <p >Likes: {{post.totalLikes}}</p> -->
-          <img class="profile-pic" [src]="post.userProfilePic" loading="lazy" alt="">
-
-        </figcaption>
-      </figure>
-    </a>
+          </figcaption>
+        </figure>
+      </a>
+      }
   }
+  
+
 </section>
