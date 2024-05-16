@@ -1,6 +1,5 @@
 
-<div class="links-container">
+<a class="link" [routerLink]="linkRoute">
     <img src="assets/icons/{{linkIcon}}" class="link-icon" alt="icon">
-    <a class="link" [routerLink]="linkRoute">{{linkText}}</a>
-</div>
-
+    {{linkText}}
+</a>
