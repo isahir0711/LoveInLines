@@ -3,7 +3,7 @@
     <app-skeletonloader></app-skeletonloader>
   }
   @else{
-    @for (post of posts; track $index) {
+    @for (post of drawings(); track $index) {
       <a routerLink="/Drawing/{{post.id}}">
         <figure>
           <img [src]="post.drawingURL" alt="A windmill" />

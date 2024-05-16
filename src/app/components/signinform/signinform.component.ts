@@ -21,7 +21,6 @@ export class SigninformComponent {
         this.apiService.githubSignIn().pipe(
             map(res => {
                 this.url = res;
-                //window.location.href = this.url;
                 console.log(this.url);
                 
                 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ButtonComponent } from "../../components/button/button.component";
 import { ApiService } from '../../services/api/api.service';
 import { DrawingServerResponse } from '../../interfaces/image';
@@ -14,13 +14,17 @@ import { SkeletonloaderComponent } from "../../components/skeletonloader/skeleto
     imports: [ButtonComponent, RouterModule, SkeletonloaderComponent]
 })
 export class DrawingsComponent {
-    constructor(private apiService: ApiService) {
-    }
     
+    drawings = signal<DrawingServerResponse[]>([]); 
     posts: DrawingServerResponse[] = [];
     loading: boolean = true;
     
+
+    constructor(private apiService: ApiService) {
+    }
+    
     ngOnInit(): void {
+        
     }
     
     ngAfterViewInit(): void {
@@ -31,6 +35,7 @@ export class DrawingsComponent {
         this.apiService.getImages().pipe(
             map(res => {
                 this.posts = res;
+                this.drawings.update(value => res);                
                 setTimeout(() => {
                     this.loading = false;
                 }, 300);           

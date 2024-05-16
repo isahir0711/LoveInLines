@@ -8,7 +8,7 @@ import { DrawingpostComponent } from './components/drawingpost/drawingpost.compo
 
 export const routes: Routes = [
 
-    {path:'',component:HomeComponent,title:'I let you cook'},
+    {path:'Draw',component:HomeComponent,title:'I let you cook'},
 
     // {path:'Room/:roomId',component:RoomComponent,title:'Together!!'},
     {path:'Together/:room',component:RoomComponent,title:'Together!!'},
@@ -18,6 +18,6 @@ export const routes: Routes = [
     {path:'Drawing/:postId',component:DrawingpostComponent,title:'Post'},
 
     
-    { path: '**', component: HomeComponent }
+    { path: '**', redirectTo: 'Draw'}
 
 ];
