@@ -1,5 +1,8 @@
 <div style="padding: 12px; max-width: 500px; margin: 0 auto;">
-    <figure>
+    <figure (dblclick)="doubleClick(drawing.id)">
+      @if (liked) {
+      <img id="like-heart" src="assets/icons/heart-fill.svg" class="like" alt="">
+      }
         <img  class="post"  [src]="drawing.drawingURL" />
         <figcaption>
           <!-- <p >Likes: {{post.totalLikes}}</p> -->

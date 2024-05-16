@@ -12,7 +12,8 @@ import { catchError, map, throwError } from 'rxjs';
   styleUrl: './drawingpost.component.css'
 })
 export class DrawingpostComponent {
-  constructor(private apiService: ApiService, private route: ActivatedRoute) { }
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+   }
 
   drawing = {} as DrawingServerResponse;
   
@@ -21,6 +22,8 @@ export class DrawingpostComponent {
   loading:boolean = true;
 
   vname = 'post' + this.postId;
+
+  liked = false;
 
   ngOnInit(): void {
     
@@ -44,5 +47,22 @@ export class DrawingpostComponent {
 
   getViewTransitionName(id:number){
     return `view-transition-name: post-${id};`;
+  }
+
+  doubleClick(id:number){
+
+    const likeHeart = document.getElementById('like-heart')!;
+
+    if(this.liked){
+      likeHeart.classList.add('disliked');
+      setTimeout(() => {
+        this.liked = false;
+      }, 300);
+
+    }
+    else{
+      this.liked = true;
+    }
+
   }
 }

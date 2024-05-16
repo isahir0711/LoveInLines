@@ -1,21 +1,21 @@
-.link{
+.link {
     font-size: 1.2em;
     font-weight: 500;
     color: currentColor;
     text-decoration: none;
-    
+
     display: flex;
-        flex-direction: column;
-        justify-content: center;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     transition: all 0.4s;
 }
 
-.link-icon{
+.link-icon {
     width: 20px;
     height: auto;
 }
 
-.active-link{
+.active-link {
     color: #9d96fd;
 }
